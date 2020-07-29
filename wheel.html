@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 30px 50px 30px;
+
+        }
+
+        .buttons {
+            position: relative;
+            top: 290px;
+            width: 640px;
+            margin: 0 auto;
+            z-index: 100;
+        }
+
+
+
+        #prev {
+            float: left;
+        }
+
+        #next {
+            float: right;
+        }
+
+        .disc-button {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            /* -webkit-border-radius: 100%; */
+            border-radius: 100%;
+            font-weight: 100;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+        .flip {
+            margin: 0 auto;
+            filter: drop-shadow(30px 30px 23px rgba(0, 0, 0, 0.3));
+        }
+        .cube{
+            transform-style: preserve-3d;
+            transition: 1s ease;
+            
+        }
+
+        .cube>div {
+            width: 100%;
+            overflow: hidden;
+            height: 100.5%;
+            position: absolute;
+            /* background-color: #333; */
+            color: #fff;
+            font-weight: 100;
+            text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="buttons">
+            <div id="prev" class="disc-button">
+                < </div>
+                    <div id="next" class="disc-button">></div>
+
+
+            </div>
+        </div>
+
+            <div class="flip" style="height: 500px; width: 500px; perspective: 1000px;">
+                <div class="cube" style="margin: 0px; height: 500px; width: 500px; transform: translateZ(-250px);transform-origin: 50% 50% -250px;z-index: 1;">
+                    <div class="top"
+                        style="transform: rotate3d(1, 0, 0, 90deg) translate3d(0px, 0px, 250px); font-size: 132px; background: red;">
+                    </div>
+                    <div class="front"
+                        style="transform: rotate3d(0, 0, 0, 0deg) translate3d(0px, 0px, 250px); font-size: 132px; background:rebeccapurple;opacity: 0.5;">
+                    </div>
+                    <div class="left"></div>
+                    <div class="right"></div>
+                    <div class="bottom"
+                        style="transform: rotate3d(1, 0, 0, -90deg) translate3d(0px, 0px, 250px); font-size: 132px; background:sandybrown">
+                    </div>
+                    <div class="back" style="transform: rotate3d(1, 0, 0, 180deg) translate3d(0px, 0px, 250px); font-size: 132px; background:seagreen;"></div>
+                </div>
+
+            </div>
+
+
+
+            <script>
+
+                var cube=document.querySelector(".cube")
+
+                var left=document.querySelector("#prev")
+
+                var right=document.querySelector("#next");
+
+                var angle=90;
+                var num=0;
+
+               var t= setInterval(function(){
+                    num++;
+
+                    // angle++;
+                    cube.style.transform="rotateX("+angle*num+"deg) translateZ(-250px)" ;
+                    // if(angle<180){
+                    // angle=angle+90;}
+                    // else{
+                    //     angle=-90;
+                    // }
+                },2000);
+
+                cube.onmouseover=function(){
+                    clearInterval(t)
+                }
+                cube.onmouseout=function(){
+                    t= setInterval(function(){
+                    num++;
+
+
+                    cube.style.transform="rotateX("+angle*num+"deg) translateZ(-250px)" ;
+
+                },2000)
+                }
+                right.onmouseover=function(){
+                    clearInterval(t)
+                }
+                right.onmouseout=function(){
+                    t= setInterval(function(){
+                    num++;
+
+
+                    cube.style.transform="rotateX("+angle*num+"deg) translateZ(-250px)" ;
+
+                },2000)
+                }
+
+
+                right.onclick=function(){
+                    num--;
+
+                    cube.style.transform="rotateX("+angle*num+"deg) translateZ(-250px)";
+                }
+
+                left.onmouseover=function(){
+                    clearInterval(t)
+                }
+                left.onmouseout=function(){
+                    t= setInterval(function(){
+                    num++;
+
+
+                    cube.style.transform="rotateX("+angle*num+"deg) translateZ(-250px)" ;
+
+                },2000)
+                }
+
+
+                left.onclick=function(){
+                    num++;
+
+                    cube.style.transform="rotateX("+angle*num+"deg) translateZ(-250px)";
+                }
+
+
+
+
+
+
+
+                
+
+
+
+
+
+            </script>
+
+</body>
+
+</html>
